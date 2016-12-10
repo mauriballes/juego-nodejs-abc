@@ -8,11 +8,13 @@ module.exports = function (socket) {
 
     // Handlers
     function event1(data) {
-        console.log('Evento1: ' + data);
+        console.log('Evento 1 Activated');
+        socket.emit('event1', 'Evento1: ' + data);
     }
 
     function event2(data) {
-        console.log('Evento2: ' + data);
+        console.log('Evento 2 Activated');
+        socket.emit('event2', 'Evento2: ' + data);
     }
 
     function disconnect() {
