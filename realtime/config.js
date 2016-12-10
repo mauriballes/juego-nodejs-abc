@@ -5,7 +5,10 @@ module.exports = function (Server) {
     // Inicializando Coneccion
     io.on('connection', function (socket) {
         console.log('Player Connected');
-        socket.emit('Hello', {message: 'Bienvenido'});
+        socket.on('message', function (saludo) {
+            console.log("Saludo");
+            socket.emit('message', {message: 'Bienvenido'});
+        });
         socket.on('disconnect', function () {
             console.log('Player Disconnected');
         });
