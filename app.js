@@ -10,7 +10,7 @@ var app = express();
 
 // Test Server
 app.get('/', function (req, res) {
-    res.send('Helloo World');
+    res.send('Hello World, La app ya esta deployada');
 });
 
 module.exports = app;
