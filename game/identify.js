@@ -5,7 +5,7 @@ module.exports = function identify(data, socket) {
 
     var Usuario = require('../models/usuarios');
     var Unidad = require('../models/unidades');
-    var Palabra = require('../models/unidades');
+    var Palabra = require('../models/palabras');
 
     // Cuando el user ingresa sus datos a la app
     if (typeof data.user_id === 'undefined') {

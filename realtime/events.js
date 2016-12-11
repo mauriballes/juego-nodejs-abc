@@ -32,7 +32,7 @@ module.exports = function (socket) {
      * Pedir Jugar
      */
     function requestPlay(data) {
-        requestPlayGame(data);
+        requestPlayGame(data, socket);
     }
 
     /**
