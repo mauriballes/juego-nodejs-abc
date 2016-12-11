@@ -6,7 +6,6 @@ module.exports = function (Server) {
     var events = require('./events');
     var modelSocket = require('./models');
     var clienteModel = modelSocket.clienteConectado;
-    var partidaModel = modelSocket.partida;
 
     // Estructuras de datos
     global.listClientes = [];
@@ -17,7 +16,7 @@ module.exports = function (Server) {
 
         // Agregar Nuevo Cliente y Enviar id
         listClientes.push(new clienteModel(socket));
-        socket.emit('connection_res', {status: 'OK', id: socket.id});
+        socket.emit('connectionRes', {status: 'OK', id: socket.id});
 
         // Event Handler
         console.log('Client Connected');
