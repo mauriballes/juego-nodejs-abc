@@ -26,6 +26,28 @@ function getIndexPartidaForPlaying(nivel, id) {
     return -1;
 }
 
+function getIndexPartida(socketID) {
+    for (var i = 0; i < listPartidas.length; i++)
+        if ((listPartidas[i].player1 == null &&
+            listPartidas[i].player1.socket.id === socketID) ||
+            (listPartidas[i].player2 !== null &&
+            listPartidas[i].player2.socket.id === socketID))
+            return i;
+    return -1;
+}
+
+function haveGame(socketID) {
+    for (var i = 0; i < listPartidas.length; i++)
+        if ((listPartidas[i].player1 == null &&
+            listPartidas[i].player1.socket.id === socketID) ||
+            (listPartidas[i].player2 !== null &&
+            listPartidas[i].player2.socket.id === socketID))
+            return true;
+    return false;
+}
+
 module.exports.setClientBySocketId = setClientBySocketId;
 module.exports.getClientBySocketId = getClientBySocketId;
 module.exports.getIndexPartidaForPlaying = getIndexPartidaForPlaying;
+module.exports.haveGame = haveGame;
+module.exports.getIndexPartida = getIndexPartida;

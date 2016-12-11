@@ -4,11 +4,13 @@ module.exports = function (socket) {
     // Modulos
     var identifyGame = require('../game/identify');
     var requestPlayGame = require('../game/requestPlay');
+    var cancelPlayRequestGame = require('../game/cancelPlayRequest');
 
     // Events
     socket.on('eventTest', eventTest);
     socket.on('identify', identify);
     socket.on('requestPlay', requestPlay);
+    socket.on('cancelPlayRequest', cancelPlayRequest);
     socket.on('disconnect', disconnect);
 
     // Handlers
@@ -33,6 +35,13 @@ module.exports = function (socket) {
      */
     function requestPlay(data) {
         requestPlayGame(data, socket);
+    }
+    
+    /**
+     * Cancelar peticion de partida 
+     */
+    function cancelPlayRequest(data) {
+        cancelPlayRequestGame(socket);
     }
 
     /**

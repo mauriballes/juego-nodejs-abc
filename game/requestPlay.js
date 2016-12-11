@@ -26,7 +26,8 @@ module.exports = function requestPlayGame(data, socket) {
                 // Oponente
                 socket.emit('initGameRes',{status:'OK', evento:'initGameRes', rol:'Oponente',rival:creador.client.username});
             } else { // No hay partida
-                listPartidas.push(new partidaModel(player, null, doc));
+                if(!utils.haveGame(id))
+                    listPartidas.push(new partidaModel(player, null, doc));
                 socket.emit('requestPlayRes', {status:'OK', evento:'requestPlayRes', message:'Buscando Oponente'});
             }
         } else
