@@ -1,20 +1,48 @@
 // Event Handler
 module.exports = function (socket) {
 
+    // Modulos
+    var utils = require('../utils');
+    var Usuario = require('../models/usuarios').Usuario;
+
     // Events
-    socket.on('event1', event1);
-    socket.on('event2', event2);
+    socket.on('eventTest', eventTest);
+    socket.on('identify', identify);
     socket.on('disconnect', disconnect);
 
     // Handlers
-    function event1(data) {
-        console.log('Evento 1 Activated');
-        socket.emit('event1', 'Evento1: ' + data);
+    function eventTest(data) {
+        console.log('Evento Test Activated');
+        socket.emit('eventTest', data);
     }
 
-    function event2(data) {
-        console.log('Evento 2 Activated');
-        socket.emit('event2', 'Evento2: ' + data);
+    function identify(data) {
+
+        // Cuando el user ingresa sus datos a la app
+        if (typeof data.user_id === 'undefined') {
+
+            // Crear user
+            var user = new Usuario({username: data.username, sexo: data.sexo});
+            user.save(function (err, doc) {
+                if (err)
+                    socket.emit('identify_res', {status: 'ERROR', error: String(err)});
+                else {
+                    utils.setClientBySocketId(socket.id, doc);
+                    socket.emit('identify_res', {status: 'OK', client: doc});
+                }
+            });
+        } else {
+
+            // Buscar User
+            Usuario.findById(data.user_id, function (err, doc) {
+                if (err)
+                    socket.emit('identify_res', {status: 'ERROR', error: String(err)});
+                else {
+                    utils.setClientBySocketId(socket.id, doc);
+                    socket.emit('identify_res', {status: 'OK', client: doc});
+                }
+            });
+        }
     }
 
     function disconnect() {
