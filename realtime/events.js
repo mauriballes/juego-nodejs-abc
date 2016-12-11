@@ -48,6 +48,6 @@ module.exports = function (socket) {
      * Desconectarse
      */
     function disconnect() {
-        console.log('Client Disconnected');
+        console.log('Client Disconnected: ' + socket.id);
     }
 };

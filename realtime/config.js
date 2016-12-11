@@ -19,7 +19,7 @@ module.exports = function (Server) {
         socket.emit('connectionRes', {status: 'OK', id: socket.id});
 
         // Event Handler
-        console.log('Client Connected');
+        console.log('Client Connected: ' + socket.id);
         events(socket);
     });
 };
