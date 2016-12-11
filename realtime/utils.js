@@ -42,8 +42,8 @@ function haveGame(socketID) {
             listPartidas[i].player1.socket.id === socketID) ||
             (listPartidas[i].player2 !== null &&
             listPartidas[i].player2.socket.id === socketID))
-            return true;
-    return false;
+            return id;
+    return -1;
 }
 
 module.exports.setClientBySocketId = setClientBySocketId;

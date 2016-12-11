@@ -22,13 +22,18 @@ module.exports = function requestPlayGame(data, socket) {
                 // Emitir init Partida
                 // Creador
                 var creador = listPartidas[indexPartida].player1;
-                creador.socket.emit('initGameRes',{status:'OK', evento:'initGameRes', rol:'Creador', rival:player.client.username});
+                creador.socket.emit('initGameRes',{status:'OK', evento:'initGameRes', rol:'Creador', rival:'Player 1'});
                 // Oponente
-                socket.emit('initGameRes',{status:'OK', evento:'initGameRes', rol:'Oponente',rival:creador.client.username});
+                socket.emit('initGameRes',{status:'OK', evento:'initGameRes', rol:'Oponente',rival:'Player 2'});
             } else { // No hay partida
-                if(!utils.haveGame(socket.id))
+                var partida = utils.haveGame(socket.id);
+                if(partida === -1)
                     listPartidas.push(new partidaModel(player, null, doc));
-                socket.emit('requestPlayRes', {status:'OK', evento:'requestPlayRes', message:'Buscando Oponente'});
+
+                if(partida !== -1 && listPartidas[partida].player2 !== null)
+                    socket.emit('requestPlayRes', {status :'OK', evento:'requestPlayRes', message:'Empezo Partida'});
+                else
+                    socket.emit('requestPlayRes', {status:'OK', evento:'requestPlayRes', message:'Buscando Oponente'});
             }
         } else
             socket.emit('requestPlayRes', {status: 'ERROR', evento: 'requestPlayRes', error: 'Nivel no esta en la BD'});
