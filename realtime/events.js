@@ -3,7 +3,7 @@ module.exports = function (socket) {
 
     // Modulos
     var identifyGame = require('../game/identify');
-    var requestPlayGame = require('../game/game').requestPlayGame;
+    var requestPlayGame = require('../game/requestPlay');
 
     // Events
     socket.on('eventTest', eventTest);
