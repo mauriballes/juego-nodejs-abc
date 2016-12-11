@@ -24,17 +24,17 @@ mongoose.connect('mongodb://localhost:27017/abcgame', function () {
 
 function seed() {
     // Unidad
-    (new Unidad({nombre: 'Saludos', descripcion: 'Unidas de Saludos', nivel: 1})).save(function (err, doc) {
-        (new Palabra({letras: 'Hola', unidad: doc})).save(function (err, doc) {
-            (new Palabra({letras: 'Buenas', unidad: doc})).save(function (err, doc) {
-                (new Palabra({letras: 'Alo', unidad: doc})).save(function (err, doc) {
+    (new Unidad({nombre: 'Saludos', descripcion: 'Unidas de Saludos', nivel: 1})).save(function (err, docUnit1) {
+        (new Palabra({letras: 'Hola', unidad: docUnit1})).save(function (err, doc) {
+            (new Palabra({letras: 'Buenas', unidad: docUnit1})).save(function (err, doc) {
+                (new Palabra({letras: 'Alo', unidad: docUnit1})).save(function (err, doc) {
                     (new Unidad({
                         nombre: 'Despedidas',
                         descripcion: 'Unidas de Despedidas',
                         nivel: 2
-                    })).save(function (err, doc) {
-                        (new Palabra({letras: 'Adios', unidad: doc})).save(function (err, doc) {
-                            (new Palabra({letras: 'Chau', unidad: doc})).save(function (err, doc) {
+                    })).save(function (err, docUnit2) {
+                        (new Palabra({letras: 'Adios', unidad: docUnit2})).save(function (err, doc) {
+                            (new Palabra({letras: 'Chau', unidad: docUnit2})).save(function (err, doc) {
                                 mongoose.disconnect();
                             });
                         });
