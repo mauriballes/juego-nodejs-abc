@@ -16,9 +16,10 @@ function getClientBySocketId(socketID) {
     return null;
 }
 
-function getIndexPartidaForPlaying(nivel) {
+function getIndexPartidaForPlaying(nivel, id) {
     for (var i = 0; i < listPartidas.length; i++)
         if (listPartidas[i].player1 !== null &&
+            listPartidas[i].player1.socket.id !== id &&
             listPartidas[i].unidad.nivel === nivel &&
             listPartidas[i].player2 === null)
             return i;
