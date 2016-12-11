@@ -25,7 +25,7 @@ module.exports = function (socket) {
      * Identificarse despues de conectarse al socket
      */
     function identify(data) {
-        identifyGame(data);
+        identifyGame(data, socket);
     }
 
     /**

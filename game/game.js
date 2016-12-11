@@ -1,5 +1,5 @@
 // Modulos
-var Usuario = require('../models/usuarios').Usuario;
+var Usuario = require('../models/usuarios');
 
 function requestPlayGame() {
     // TODO

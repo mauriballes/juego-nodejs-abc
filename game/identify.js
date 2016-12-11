@@ -1,11 +1,11 @@
-module.exports = function identify(data) {
+module.exports = function identify(data, socket) {
 
     // Modulos
     var utils = require('../realtime/utils');
 
-    var Usuario = require('../models/usuarios').Usuario;
-    var Unidad = require('../models/unidades').Unidad;
-    var Palabra = require('../models/unidades').Palabra;
+    var Usuario = require('../models/usuarios');
+    var Unidad = require('../models/unidades');
+    var Palabra = require('../models/unidades');
 
     // Cuando el user ingresa sus datos a la app
     if (typeof data.user_id === 'undefined') {

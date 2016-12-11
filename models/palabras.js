@@ -8,4 +8,4 @@ var palabra_schema = new Schema({
 
 var Palabra = mongoose.model("Palabra", palabra_schema);
 
-module.exports.Palabra = Palabra;
+module.exports = Palabra;

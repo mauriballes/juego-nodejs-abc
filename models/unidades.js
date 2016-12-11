@@ -9,4 +9,4 @@ var unidad_schema = new Schema({
 
 var Unidad = mongoose.model("Unidad", unidad_schema);
 
-module.exports.Unidad = Unidad;
+module.exports = Unidad;

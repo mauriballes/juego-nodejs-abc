@@ -15,4 +15,4 @@ unidades_cursadas_schema.virtual('usuario_id').get(function () {
 
 var UnidadesCursadas = mongoose.model("UnidadesCursadas", unidades_cursadas_schema);
 
-module.exports.UnidadesCursadas = UnidadesCursadas;
+module.exports = UnidadesCursadas;
