@@ -9,7 +9,6 @@ module.exports.requestPlayGame = function requestPlayGame(data, socket) {
 
     // Buscar Unidad
     var nivel = data.unidad;
-    console.log(nivel);
     Unidad.findOne({nivel: nivel}, finded_unit);
 
     function finded_unit(err, doc) {
