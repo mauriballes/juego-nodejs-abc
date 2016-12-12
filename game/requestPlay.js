@@ -22,9 +22,9 @@ module.exports = function requestPlayGame(data, socket) {
                 // Emitir init Partida
                 // Creador
                 var creador = listPartidas[indexPartida].player1;
-                creador.socket.emit('initGameRes',{status:'OK', evento:'initGameRes', rol:'Creador', rival:'Player 1'});
+                creador.socket.emit('initGameRes',{status:'OK', evento:'initGameRes', rol:'Creador', rival:'Player 1', idPartida:indexPartida});
                 // Oponente
-                socket.emit('initGameRes',{status:'OK', evento:'initGameRes', rol:'Oponente',rival:'Player 2'});
+                socket.emit('initGameRes',{status:'OK', evento:'initGameRes', rol:'Oponente',rival:'Player 2', idPartida:indexPartida});
             } else { // No hay partida
                 var partida = utils.haveGame(socket.id);
                 if(partida === -1)
