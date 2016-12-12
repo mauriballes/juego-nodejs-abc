@@ -3,7 +3,7 @@ module.exports = function cancelPlayRequest(socket) {
     var utils = require('../realtime/utils');
 
     // Eliminar Partida
-    var indexPartida = utils.getIndexPartida(socket.id);
+    var indexPartida = utils.haveGame(socket.id);
     if(indexPartida > -1)
         listPartidas.splice(indexPartida, 1);
 };

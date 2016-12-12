@@ -53,7 +53,7 @@ module.exports = function identify(data, socket) {
             if (err)
                 socket.emit('identifyRes', {status: 'ERROR', evento: 'identifyRes', error: String(err)});
             else {
-                utils.setClientBySocketId(socket.id, doc);
+                utils.setClientBySocketId(socket.id, docUser);
                 socket.emit('identifyRes', {status: 'OK', evento: 'identifyRes', client: docUser});
             }
         });
