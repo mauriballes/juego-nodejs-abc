@@ -8,11 +8,13 @@ function clienteConectado(socket, client, isPlaying){
 }
 
 function partida(player1, player2, unidad, palabras) {
+    this.id = idPartidasGlobal;
     this.player1 = player1 || null;
     this.player2 = player2 || null;
     this.unidad = unidad || null;
     this.palabras = palabras || [];
     this.puntos = {player1: 0, player2: 0};
+    idPartidasGlobal++;
 }
 
 module.exports.clienteConectado = clienteConectado;

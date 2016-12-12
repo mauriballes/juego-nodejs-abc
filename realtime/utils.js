@@ -39,8 +39,26 @@ function haveGame(socketID) {
 function deleteClientFromList(socketID) {
     for (var i = 0; i < listClientes.length; i++) {
         if (listClientes[i].socket.id === socketID) {
-            listClientes.splice(i,1);
+            listClientes.splice(i, 1);
             break;
+        }
+    }
+}
+
+function getIndexPartidaById(partidaID) {
+    for (var i = 0; i < listPartidas.length; i++) {
+        if (listPartidas[i].id === partidaID) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function deletePartidaBySocketId(socketID) {
+    for (var i = 0; i < listPartidas.length; i++) {
+        if (listPartidas[i].player1 !== null &&
+            listPartidas[i].player1.socket.id === socketID) {
+            listPartidas.splice(i, 1);
         }
     }
 }
@@ -50,3 +68,5 @@ module.exports.getClientBySocketId = getClientBySocketId;
 module.exports.getIndexPartidaForPlaying = getIndexPartidaForPlaying;
 module.exports.haveGame = haveGame;
 module.exports.deleteClientFromList = deleteClientFromList;
+module.exports.getIndexPartidaById = getIndexPartidaById;
+module.exports.deletePartidaBySocketId = deletePartidaBySocketId;

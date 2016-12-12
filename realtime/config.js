@@ -10,6 +10,7 @@ module.exports = function (Server) {
     // Estructuras de datos
     global.listClientes = [];
     global.listPartidas = [];
+    global.idPartidasGlobal = 0;
 
     // Event Connection
     io.on('connection', function (socket) {

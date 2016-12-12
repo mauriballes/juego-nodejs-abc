@@ -15,7 +15,7 @@ module.exports = function (socket) {
     socket.on('cancelPlayRequest', cancelPlayRequest);
     socket.on('playGame', playGame);
     socket.on('touched', touched);
-    socket.on('endGame', endGame);
+    socket.on('endPlay', endPlay);
     socket.on('disconnect', disconnect);
 
     // Handlers
@@ -53,9 +53,10 @@ module.exports = function (socket) {
      * Metodo con el que se pasan los objetos del juego
      */
     function playGame(data) {
-        if (data.idPartida > -1) {
+        var indexPartida = utils.getIndexPartidaById(data.idPartida);
+        if (indexPartida > -1) {
             // TODO: Validar en caso de que el oponente este conectado
-            listPartidas[data.idPartida].player2.socket.emit('playGameRes', {
+            listPartidas[indexPartida].player2.socket.emit('playGameRes', {
                 status: 'OK',
                 evento: 'playGameRes',
                 letras: data.letras
@@ -69,16 +70,17 @@ module.exports = function (socket) {
      * Metodo en el que se mandan la letras seleccionadas al otro jugador
      */
     function touched(data) {
-        if (data.idPartida > -1) {
+        var indexPartida = utils.getIndexPartidaById(data.idPartida);
+        if (indexPartida > -1) {
             // TODO: Validar en caso de que el oponente este conectado
             if (data.player === 'Creador')
-                listPartidas[data.idPartida].player2.socket.emit('touchedRes', {
+                listPartidas[indexPartida].player2.socket.emit('touchedRes', {
                     status: 'OK',
                     evento: 'touchedRes',
                     letra: data.letra
                 });
             else
-                listPartidas[data.idPartida].player1.socket.emit('touchedRes', {
+                listPartidas[indexPartida].player1.socket.emit('touchedRes', {
                     status: 'OK',
                     evento: 'touchedRes',
                     letra: data.letra
@@ -91,13 +93,8 @@ module.exports = function (socket) {
     /**
      * Metodo que da puntos y revisa por los ganadores del nivel
      */
-    function endGame(data) {
-        if (data.idPartida > -1) {
-            // TODO: Validar en caso de que el oponente este conectado
-            endPlayGame(data, socket);
-        } else {
-            // TODO: Cuando un jugar mande letras para su oponente y que no exista su partida
-        }
+    function endPlay(data) {
+        endPlayGame(data, socket);
     }
 
     /**
@@ -106,5 +103,6 @@ module.exports = function (socket) {
     function disconnect() {
         console.log('Client Disconnected: ' + socket.id);
         utils.deleteClientFromList(socket.id);
+        utils.deletePartidaBySocketId(socket.id);
     }
 };

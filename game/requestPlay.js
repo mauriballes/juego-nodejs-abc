@@ -32,7 +32,7 @@ module.exports = function requestPlayGame(data, socket) {
                         evento: 'initGameRes',
                         rol: 'Creador',
                         rival: 'Player 1',
-                        idPartida: indexPartida
+                        idPartida: listPartidas[indexPartida].id
                     });
                     // Oponente
                     socket.emit('initGameRes', {
@@ -40,7 +40,7 @@ module.exports = function requestPlayGame(data, socket) {
                         evento: 'initGameRes',
                         rol: 'Oponente',
                         rival: 'Player 2',
-                        idPartida: indexPartida
+                        idPartida: listPartidas[indexPartida].id
                     });
                 } else { // No hay partida
                     var partida = utils.haveGame(socket.id);
@@ -72,7 +72,7 @@ module.exports = function requestPlayGame(data, socket) {
     function getArrayPalabrasName(arrayObjects) {
         var arrayPalabra = [];
         for (var i = 0; i < arrayObjects.length; i++)
-            arrayPalabra.push(arrayObjects[i].letras.toLowerCase());
+            arrayPalabra.push(arrayObjects[i].letras.toUpperCase());
         return arrayPalabra;
     }
 };
