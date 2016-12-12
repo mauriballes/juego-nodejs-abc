@@ -49,5 +49,6 @@ module.exports = function (socket) {
      */
     function disconnect() {
         console.log('Client Disconnected: ' + socket.id);
+        utils.deleteClientFromList(socket.id);
     }
 };
