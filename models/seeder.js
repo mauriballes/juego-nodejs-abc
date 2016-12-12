@@ -14,7 +14,7 @@ mongoose.connect('mongodb://localhost:27017/abcgame', function () {
             Unidad.remove({}, function (err) {
                 UnidadesCursadas.remove({}, function (err) {
                     console.log('BD Limpia');
-                    seedTest();
+                    seedTest2();
                     console.log('BD Poblada');
                 })
             });
@@ -83,6 +83,19 @@ function seedTest() {
                             });
                         });
                     });
+                });
+            });
+        });
+    });
+}
+
+function seedTest2() {
+    // Unidad
+    (new Unidad({nombre: 'Saludos', descripcion: 'Unidas de Saludos', nivel: 1})).save(function (err, docUnit1) {
+        (new Palabra({letras: 'AAA', unidad: docUnit1})).save(function (err, doc) {
+            (new Palabra({letras: 'DDD', unidad: docUnit1})).save(function (err, doc) {
+                (new Palabra({letras: 'MMM', unidad: docUnit1})).save(function (err, doc) {
+                    mongoose.disconnect();
                 });
             });
         });
