@@ -56,7 +56,27 @@ function seedTest() {
                                 (new Palabra({letras: 'Correr', unidad: docUnit4})).save(function (err, doc) {
                                     (new Unidad({nombre: 'Bailar', descripcion: 'Unidas de Comida', nivel: 5})).save(function (err, docUnit5) {
                                         (new Palabra({letras: 'Conga', unidad: docUnit5})).save(function (err, doc) {
-                                            mongoose.disconnect();
+                                            (new Unidad({nombre: 'Saludos', descripcion: 'Unidas de Saludos', nivel: 6})).save(function (err, docUnit6) {
+                                                (new Palabra({letras: 'Hola', unidad: docUnit6})).save(function (err, doc) {
+                                                    (new Unidad({nombre: 'Comida', descripcion: 'Unidas de Comida', nivel: 7})).save(function (err, docUnit7) {
+                                                        (new Palabra({letras: 'Picante', unidad: docUnit7})).save(function (err, doc) {
+                                                            (new Unidad({nombre: 'Bye', descripcion: 'Unidas de Saludos', nivel: 8})).save(function (err, docUnit8) {
+                                                                (new Palabra({letras: 'Chau', unidad: docUnit8})).save(function (err, doc) {
+                                                                    (new Unidad({nombre: 'Carrera', descripcion: 'Unidas de Comida', nivel: 9})).save(function (err, docUnit9) {
+                                                                        (new Palabra({letras: 'Correr', unidad: docUnit9})).save(function (err, doc) {
+                                                                            (new Unidad({nombre: 'Bailar', descripcion: 'Unidas de Comida', nivel: 10})).save(function (err, docUnit10) {
+                                                                                (new Palabra({letras: 'Conga', unidad: docUnit10})).save(function (err, doc) {
+                                                                                    mongoose.disconnect();
+                                                                                });
+                                                                            });
+                                                                        });
+                                                                    });
+                                                                });
+                                                            });
+                                                        });
+                                                    });
+                                                });
+                                            });
                                         });
                                     });
                                 });
