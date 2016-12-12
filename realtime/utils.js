@@ -4,6 +4,7 @@ function setClientBySocketId(socketID, client) {
     for (var i = 0; i < listClientes.length; i++) {
         if (listClientes[i].socket.id === socketID) {
             listClientes[i].client = client;
+            console.log('Cliente Ingresado');
             break;
         }
     }
@@ -38,12 +39,21 @@ function getIndexPartida(socketID) {
 
 function haveGame(socketID) {
     for (var i = 0; i < listPartidas.length; i++)
-        if ((listPartidas[i].player1 == null &&
+        if ((listPartidas[i].player1 !== null &&
             listPartidas[i].player1.socket.id === socketID) ||
             (listPartidas[i].player2 !== null &&
             listPartidas[i].player2.socket.id === socketID))
-            return id;
+            return i;
     return -1;
+}
+
+function deleteClientFromList(socketID) {
+    for (var i = 0; i < listClientes.length; i++) {
+        if (listClientes[i].socket.id === socketID) {
+            listClientes.splice(i,1);
+            break;
+        }
+    }
 }
 
 module.exports.setClientBySocketId = setClientBySocketId;
@@ -51,3 +61,4 @@ module.exports.getClientBySocketId = getClientBySocketId;
 module.exports.getIndexPartidaForPlaying = getIndexPartidaForPlaying;
 module.exports.haveGame = haveGame;
 module.exports.getIndexPartida = getIndexPartida;
+module.exports.deleteClientFromList = deleteClientFromList;

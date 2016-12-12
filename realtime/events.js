@@ -5,6 +5,7 @@ module.exports = function (socket) {
     var identifyGame = require('../game/identify');
     var requestPlayGame = require('../game/requestPlay');
     var cancelPlayRequestGame = require('../game/cancelPlayRequest');
+    var utils = require('./utils');
 
     // Events
     socket.on('eventTest', eventTest);
