@@ -14,7 +14,7 @@ mongoose.connect('mongodb://localhost:27017/abcgame', function () {
             Unidad.remove({}, function (err) {
                 UnidadesCursadas.remove({}, function (err) {
                     console.log('BD Limpia');
-                    seedTest2();
+                    seed();
                     console.log('BD Poblada');
                 })
             });
