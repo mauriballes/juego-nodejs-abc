@@ -72,7 +72,7 @@ module.exports = function requestPlayGame(data, socket) {
     function getArrayPalabrasName(arrayObjects) {
         var arrayPalabra = [];
         for (var i = 0; i < arrayObjects.length; i++)
-            arrayPalabra.push(arrayObjects[i].letras);
+            arrayPalabra.push(arrayObjects[i].letras.toLowerCase());
         return arrayPalabra;
     }
 };
